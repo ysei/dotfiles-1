@@ -1,0 +1,12 @@
+startup_message off
+
+#putty bindings
+bindkey "^[OC" next
+bindkey "^[OD" prev
+
+termcapinfo xterm "ks=E[?1lE[C:ku=E[A:kd=E[B:kl=E[D:kr=E[C:kh=E[5~:kH=E[F"
+# hardstatus alwayslastline "%{-b gk}%-w%{+b kg}%50>%n %t%{-bgk}%+w%<"
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "

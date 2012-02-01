@@ -2,6 +2,8 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 	set fileencodings=utf-8,latin1
 endif
 
+call pathogen#infect()
+
 filetype indent off
 filetype plugin indent off
 
@@ -18,6 +20,15 @@ set history=50        " keep 50 lines of command line history
 set ruler             " show the cursor position all the time
 set mouse=a
 
+" set textwidth=72
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+syntax on
+set hlsearch
+
 let perl_extended_vars=1
 
 if has("gui_running")
@@ -33,6 +44,10 @@ if has("gui_running")
 	endif
 endif
 
+if &diff
+   set bg=dark
+endif
+
 if has("unix")
 	set directory=~/tmp//,/var/tmp//,/tmp//
 else
@@ -44,23 +59,16 @@ if has("autocmd")
 	filetype on
 
 "	autocmd BufWritePre *.py,*.js,*.css,*.html :call <SID>StripTrailingWhitespaces()
-
-	au BufNewFile,BufRead *.tt,*.tt2 setf html
+"	au BufNewFile,BufRead *.tt,*.tt2 setf html
 
 	" In text files, always limit the width of text to 78 characters
 	autocmd BufRead *.txt set tw=78
+
 	" When editing a file, always jump to the last cursor position
 	autocmd BufReadPost *
 		\ if line("'\"") > 0 && line ("'\"") <= line("$") |
 		\   exe "normal! g'\"" |
 		\ endif
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	set hlsearch
 endif
 
 " Turn off syntax highlighting if file larger than 2MB
@@ -72,17 +80,11 @@ if &term=="xterm"
 	set t_Sf=[3%dm
 endif
 
-" set textwidth=72
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set noexpandtab
-
 if has("multi_byte") && !has("win32")
 "	set listchars=tab:âºâ,eol:¬
  " wtf jim? fix this.
-"	set listchars=tab:▸―,eol:¬
-	set listchars=tab:>-,eol:$
+	set listchars=tab:▸―,eol:¬
+"	set listchars=tab:>-,eol:$
 else
 	set listchars=tab:>-,eol:$
 endif
@@ -101,19 +103,20 @@ map <Leader>r Oi....+....1....+....2....+....3....+....4....+....5....+....6...
 
 cmap ;\ \(\)<Left><Left>
 
-highlight Search     term=reverse ctermbg=Blue     ctermfg=White
+highlight Search     term=reverse ctermbg=blue     ctermfg=white
 highlight MatchParen              ctermbg=green    ctermfg=black
 highlight SpecialKey              ctermfg=darkgrey
 highlight NonText                 ctermfg=darkgrey
 
 cabbrev quoteattribs s/\v(id\|style\|name\|bgcolor\|type\|cellspacing\|colspan\|class\|cellpadding\|value\|tabindex\|border\|width\|align\|height\|wrap\|rows\|cols\|maxlength\|size)\=('?)([#$]?\w+\%?)(\2)/\1="\3"/gc
 
+map <F2>  m'A<C-R>=strftime('%Y-%m-%d')<CR><Esc>``
+map <F4>  :set list!<CR>
+map <F5>  :set cul!<CR>:set cuc!<CR>
 map <F7>  :tabp<CR>
 map <F8>  :tabn<CR>
 map <F11> :syn sync fromstart<CR>
 map <F12> :let @/ = ""<CR>
-map <F4>  :set list!<CR>
-map <F5>  :set cul!<CR>:set cuc!<CR>
 
 map Ol <C-W>+
 map OS <C-W>-

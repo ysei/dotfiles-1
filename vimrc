@@ -31,9 +31,9 @@ set hlsearch
 
 let perl_extended_vars=1
 
+colorscheme molokai
 if has("gui_running")
 	set guioptions-=T
-	colorscheme darkblue
 	set bg=dark
 	if has("unix")
 		set guifont=Monospace\ 10
@@ -93,6 +93,8 @@ set title
 set matchpairs+=<:>
 
 map <Leader>, :s/,\(\S\)/, \1/ge<CR>j
+vmap <Leader>t :Tab/
+nmap <Leader>t :Tab/
 
 nnoremap <silent> <F6> :call <SID>StripTrailingWhitespaces()<CR>
 
@@ -113,8 +115,8 @@ cabbrev quoteattribs s/\v(id\|style\|name\|bgcolor\|type\|cellspacing\|colspan\|
 map <F2>  m'A<C-R>=strftime('%Y-%m-%d')<CR><Esc>``
 map <F4>  :set list!<CR>
 map <F5>  :set cul!<CR>:set cuc!<CR>
-map <F7>  :tabp<CR>
-map <F8>  :tabn<CR>
+map <F7>  :bp<CR>
+map <F8>  :bn<CR>
 map <F11> :syn sync fromstart<CR>
 map <F12> :let @/ = ""<CR>
 
@@ -201,4 +203,13 @@ function! VisualHTMLTagWrap()
   endif
   exe "normal a</".a:tag.">"
 endfunction
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 

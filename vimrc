@@ -39,6 +39,7 @@ if has("gui_running")
 		set guifont=Monospace\ 10
 	else
 		set guifont=Lucida_Console:h11:cDEFAULT
+		set guifont=Consolas:h11:cDEFAULT
 		let skip_loading_mswin=1
 		set clipboard=unnamed
 	endif
@@ -80,7 +81,7 @@ if &term=="xterm"
 	set t_Sf=[3%dm
 endif
 
-if has("multi_byte") && !has("win32")
+if has("multi_byte") && !has("win32") && version >= 700
 "	set listchars=tab:âºâ,eol:¬
  " wtf jim? fix this.
 	set listchars=tab:▸―,eol:¬

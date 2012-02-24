@@ -2,7 +2,8 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 	set fileencodings=utf-8,latin1
 endif
 
-set encoding=utf-8
+"set encoding=utf-8
+scriptencoding utf-8
 
 call pathogen#infect()
 

@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/net/bnafile/export/co-issues/Cenlar/20120222'
-let g:netrw_dirhist_2='/net/bnafile/export/co-issues/Cenlar/20120222/z-old'
-let g:netrw_dirhist_3='/home/bna/jamdavis/Work/automation/trunk/sqlgrey'

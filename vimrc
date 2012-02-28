@@ -30,6 +30,7 @@ syntax on
 set hlsearch
 
 let perl_extended_vars=1
+let g:script_runner_key = '<F3>'
 
 colorscheme molokai
 if has("gui_running")
@@ -141,16 +142,16 @@ function! PerlCW()
 	execute "normal:edit " . l:tmpfile2 . "\<CR>"
 endfunction
 
-" perl buffer, using a temp file, into a new window
-function! PerlOutput()
-	let l:tmpfile1 = tempname()
-	let l:tmpfile2 = tempname()
-
-	execute "normal:w!" . l:tmpfile1 . "\<CR>"
-	execute "normal:! perl " . l:tmpfile1 . " \> " . l:tmpfile2 . " 2\>\&1 \<CR>"
-	execute "normal:new\<CR>"
-	execute "normal:edit " . l:tmpfile2 . "\<CR>"
-endfunction
+"" perl buffer, using a temp file, into a new window
+"function! PerlOutput()
+"	let l:tmpfile1 = tempname()
+"	let l:tmpfile2 = tempname()
+"
+"	execute "normal:w!" . l:tmpfile1 . "\<CR>"
+"	execute "normal:! perl " . l:tmpfile1 . " \> " . l:tmpfile2 . " 2\>\&1 \<CR>"
+"	execute "normal:new\<CR>"
+"	execute "normal:edit " . l:tmpfile2 . "\<CR>"
+"endfunction
 
 " Settings for editing perl source (plus bind the above two functions)
 function! MyPerlSettings()
@@ -166,7 +167,7 @@ function! MyPerlSettings()
 	set keywordprg=perldoc\ -f
 
 	noremap <f1> <Esc>:call PerlCW()<CR><Esc>
-	noremap <f3> <Esc>:call PerlOutput()<CR><Esc>
+"	noremap <f3> <Esc>:call PerlOutput()<CR><Esc>
 endfunction
 
 if has("eval")

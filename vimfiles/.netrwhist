@@ -1,6 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/bna/jamdavis/Work/perl-lib/FAMC-Mailtask/lib'
-let g:netrw_dirhist_2='/home/bna/jamdavis/Work/perl-lib/FAMC-Mailtask/lib/FAMC'
-let g:netrw_dirhist_3='/home/bna/jamdavis/Work/perl-lib/FAMC-MERS/lib/FAMC/MERS'
-let g:netrw_dirhist_4='/etc/scripts/compliance'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/net/bnafile/export/co-issues/Cenlar/20120222'
+let g:netrw_dirhist_2='/net/bnafile/export/co-issues/Cenlar/20120222/z-old'
+let g:netrw_dirhist_3='/home/bna/jamdavis/Work/automation/trunk/sqlgrey'

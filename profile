@@ -31,4 +31,5 @@ export PERL5LIB="$HOME/perl5/lib/perl5"
 export HISTCONTROL='erasedups'
 export PROMPT_DIRTRIM='2'
 export EDITOR='vim'
+export FIGNORE=.svn
 

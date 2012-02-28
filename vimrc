@@ -2,6 +2,9 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 	set fileencodings=utf-8,latin1
 endif
 
+"set encoding=utf-8
+scriptencoding utf-8
+
 call pathogen#infect()
 
 filetype indent off
@@ -106,6 +109,7 @@ vmap ,w <ESC>:call VisualHTMLTagWrap()<CR>
 map <Leader>r Oi....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8j0
 
 cmap ;\ \(\)<Left><Left>
+cmap w!! %!sudo tee > /dev/null %
 
 highlight Search     term=reverse ctermbg=blue     ctermfg=white
 highlight MatchParen              ctermbg=green    ctermfg=black

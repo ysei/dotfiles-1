@@ -1,5 +1,9 @@
 startup_message off
 
+escape ^za
+
+vbell off
+
 #putty bindings
 bindkey "^[OC" next
 bindkey "^[OD" prev

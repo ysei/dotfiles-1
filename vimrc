@@ -35,7 +35,9 @@ set hlsearch
 let perl_extended_vars=1
 let g:script_runner_key = '<F3>'
 
-colorscheme molokai
+"colorscheme molokai
+colorscheme vividchalk
+
 if has("gui_running")
 	set guioptions-=T
 	set bg=dark
@@ -100,6 +102,10 @@ set matchpairs+=<:>
 map <Leader>, :s/,\(\S\)/, \1/ge<CR>j
 vmap <Leader>t :Tab/
 nmap <Leader>t :Tab/
+vmap <Leader>= :Tab/=<CR>
+nmap <Leader>= :Tab/=<CR>
+vmap <Leader>> :Tab/=><CR>
+nmap <Leader>> :Tab/=><CR>
 
 nnoremap <silent> <F6> :call <SID>StripTrailingWhitespaces()<CR>
 

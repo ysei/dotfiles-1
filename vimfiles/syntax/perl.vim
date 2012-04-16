@@ -95,7 +95,7 @@ else
   syn keyword perlControl		BEGIN END CHECK INIT
 endif
 
-syn keyword perlStatementStorage	my local our
+syn keyword perlStatementStorage	my local our state
 syn keyword perlStatementControl	goto return last next redo
 syn keyword perlStatementScalar		chomp chop chr crypt index lc lcfirst length ord pack reverse rindex sprintf substr uc ucfirst
 syn keyword perlStatementRegexp		pos quotemeta split study

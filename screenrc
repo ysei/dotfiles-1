@@ -1,5 +1,7 @@
 startup_message off
 
+utf8 on on
+
 escape ^za
 
 vbell off

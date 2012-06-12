@@ -22,6 +22,8 @@ set viminfo='20,\"50  " read/write a .viminfo file, don't store more
 set history=50        " keep 50 lines of command line history
 set ruler             " show the cursor position all the time
 set mouse=a
+set laststatus=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " set textwidth=72
 set tabstop=4

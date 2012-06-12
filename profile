@@ -28,6 +28,7 @@ fi
 export GREP_OPTIONS='--color'
 export GREP_COLORS='ms=01;33:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 export PERL5LIB="$HOME/perl5/lib/perl5"
+export PERL_CPANM_OPT="--local-lib=~/perl5"
 export HISTCONTROL='erasedups'
 export PROMPT_DIRTRIM='2'
 export EDITOR='vim'

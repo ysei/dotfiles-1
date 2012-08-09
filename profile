@@ -28,9 +28,17 @@ fi
 export GREP_OPTIONS='--color'
 export GREP_COLORS='ms=01;33:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 export PERL5LIB="$HOME/perl5/lib/perl5"
+export PERLDB_OPTS="windowSize=40"
 export PERL_CPANM_OPT="--local-lib=~/perl5"
 export HISTCONTROL='erasedups'
 export PROMPT_DIRTRIM='2'
 export EDITOR='vim'
 export FIGNORE=.svn
+
+if [ ! -e /usr/share/terminfo/x/xterm-256color ] ; then
+    TERM=xterm-color
+    if [ ! -e /usr/share/terminfo/x/xterm-color ] ; then
+        TERM=xterm
+    fi
+fi
 

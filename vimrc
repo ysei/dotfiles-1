@@ -26,7 +26,7 @@ set laststatus=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " set textwidth=72
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
@@ -41,7 +41,7 @@ let g:script_runner_key = '<F3>'
 colorscheme vividchalk
 
 if has("gui_running")
-	set guioptions-=T
+	set guioptions-=rLT
 	set bg=dark
 	if has("unix")
 		set guifont=Monospace\ 10

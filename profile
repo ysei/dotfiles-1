@@ -25,15 +25,16 @@ if [ -d "$HOME/perl5/bin" ] ; then
     PATH="$HOME/perl5/bin:$PATH"
 fi
 
-export GREP_OPTIONS='--color'
+export DOIT_SERVER=CBSN3K1
+export EDITOR='vim'
+export FIGNORE=.svn
 export GREP_COLORS='ms=01;33:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
+export GREP_OPTIONS='--color'
+export HISTCONTROL='erasedups'
 export PERL5LIB="$HOME/perl5/lib/perl5"
 export PERLDB_OPTS="windowSize=40"
 export PERL_CPANM_OPT="--local-lib=~/perl5"
-export HISTCONTROL='erasedups'
 export PROMPT_DIRTRIM='2'
-export EDITOR='vim'
-export FIGNORE=.svn
 
 if [ ! -e /usr/share/terminfo/x/xterm-256color ] ; then
     TERM=xterm-color

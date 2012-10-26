@@ -23,13 +23,14 @@ set history=50        " keep 50 lines of command line history
 set ruler             " show the cursor position all the time
 set mouse=a
 set laststatus=2
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " set textwidth=72
 set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+let g:sql_type_default = 'sqlanywhere'
 
 syntax on
 set hlsearch
@@ -40,9 +41,15 @@ let g:script_runner_key = '<F3>'
 "colorscheme molokai
 colorscheme vividchalk
 
+set guioptions-=r
+set guioptions-=L
+set guioptions-=T
+
 if has("gui_running")
-	set guioptions-=rLT
 	set bg=dark
+        set lines=50
+        set columns=100
+
 	if has("unix")
 		set guifont=Monospace\ 10
 	else
@@ -58,6 +65,7 @@ if &diff
 endif
 
 if has("unix")
+	set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 	set directory=~/tmp//,/var/tmp//,/tmp//
 else
 	set directory=.,$TEMP
@@ -170,6 +178,8 @@ function! MyPerlSettings()
 	if !did_filetype()
 		set filetype=perl
 	endif
+
+        set cms=#\ %s
 
 "	syn include @Sql /usr/share/vim/vim71/syntax/sql.vim
 "	syn include @Sql <sfile>:p:h/sql.vim

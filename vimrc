@@ -23,6 +23,7 @@ set history=50        " keep 50 lines of command line history
 set ruler             " show the cursor position all the time
 set mouse=a
 set laststatus=2
+set wildmenu
 
 " set textwidth=72
 set tabstop=8
@@ -30,13 +31,17 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
 let g:sql_type_default = 'sqlanywhere'
 
 syntax on
 set hlsearch
 
 let perl_extended_vars=1
-let g:script_runner_key = '<F3>'
 
 "colorscheme molokai
 colorscheme vividchalk
@@ -49,6 +54,7 @@ if has("gui_running")
 	set bg=dark
         set lines=50
         set columns=100
+        colorscheme solarized
 
 	if has("unix")
 		set guifont=Monospace\ 10
@@ -68,7 +74,7 @@ if has("unix")
 	set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 	set directory=~/tmp//,/var/tmp//,/tmp//
 else
-	set directory=.,$TEMP
+	set directory=$TEMP,.
 endif
 
 " Only do this part when compiled with support for autocommands
@@ -97,26 +103,29 @@ if &term=="xterm"
 	set t_Sf=[3%dm
 endif
 
-if has("multi_byte") && !has("win32") && version >= 700
-"	set listchars=tab:âºâ,eol:¬
- " wtf jim? fix this.
-	set listchars=tab:▸―,eol:¬
-"	set listchars=tab:>-,eol:$
-else
-	set listchars=tab:>-,eol:$
+" if has("multi_byte") && !has("win32") && version >= 700   
+if &listchars ==# 'eol:$'
+  set listchars=tab:>-,eol:$
+  if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
+    let &listchars = "tab:\u25b8\u2015,eol:\u00ac"
+  endif
 endif
 
 set title
 set matchpairs+=<:>
 
-map <Leader>, :s/,\(\S\)/, \1/ge<CR>j
+nmap <Leader>, :s/, \(\S\)/, \1/ge<CR>j
+vmap <Leader>, :s/, \(\S\)/, \1/ge<CR>j
 vmap <Leader>t :Tab/
 nmap <Leader>t :Tab/
 vmap <Leader>= :Tab/=<CR>
 nmap <Leader>= :Tab/=<CR>
 vmap <Leader>> :Tab/=><CR>
 nmap <Leader>> :Tab/=><CR>
+nmap <Leader>p :0r ~/.perlstub.pl<CR>
 
+" Make Y consistent with C and D.  See :help Y.
+nnoremap Y y$
 nnoremap <silent> <F6> :call <SID>StripTrailingWhitespaces()<CR>
 
 " Wraps visual selection in an HTML tag
@@ -151,28 +160,6 @@ map OR <C-W>>
 ""p  CHAR    0
 "    :0r ~/.perl^M:14^Mi
 
-" perl -cw buffer, using a temp file, into a new window
-function! PerlCW()
-	let l:tmpfile1 = tempname()
-	let l:tmpfile2 = tempname()
-
-	execute "normal:w!" . l:tmpfile1 . "\<CR>"
-	execute "normal:! perl -cw " . l:tmpfile1 . " \> " . l:tmpfile2 . " 2\>\&1 \<CR>"
-	execute "normal:new\<CR>"
-	execute "normal:edit " . l:tmpfile2 . "\<CR>"
-endfunction
-
-"" perl buffer, using a temp file, into a new window
-"function! PerlOutput()
-"	let l:tmpfile1 = tempname()
-"	let l:tmpfile2 = tempname()
-"
-"	execute "normal:w!" . l:tmpfile1 . "\<CR>"
-"	execute "normal:! perl " . l:tmpfile1 . " \> " . l:tmpfile2 . " 2\>\&1 \<CR>"
-"	execute "normal:new\<CR>"
-"	execute "normal:edit " . l:tmpfile2 . "\<CR>"
-"endfunction
-
 " Settings for editing perl source (plus bind the above two functions)
 function! MyPerlSettings()
 	if !did_filetype()
@@ -187,9 +174,6 @@ function! MyPerlSettings()
 
 "	set formatoptions=croql
 	set keywordprg=perldoc\ -f
-
-	noremap <f1> <Esc>:call PerlCW()<CR><Esc>
-"	noremap <f3> <Esc>:call PerlOutput()<CR><Esc>
 endfunction
 
 if has("eval")

@@ -1,3 +1,5 @@
+set nocompatible
+
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 	set fileencodings=utf-8,latin1
 endif
@@ -12,11 +14,10 @@ filetype plugin indent off
 
 set hidden
 set nowrap
-set nocompatible      " Use Vim defaults (much better!)
 set bs=2              " allow backspacing over everything in insert mode
 set noai
 set nobackup
-setlocal comments-=:#
+set title
 set viminfo='20,\"50  " read/write a .viminfo file, don't store more
                       " than 50 lines of registers
 set history=50        " keep 50 lines of command line history
@@ -31,12 +32,17 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+setlocal comments-=:#
+
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
 let g:sql_type_default = 'sqlanywhere'
+let html_use_css = 1
+" let html_number_lines = 0
+let html_no_pre = 1
 
 syntax on
 set hlsearch
@@ -59,8 +65,8 @@ if has("gui_running")
 	if has("unix")
 		set guifont=Monospace\ 10
 	else
-		set guifont=Lucida_Console:h11:cDEFAULT
-		set guifont=Consolas:h11:cDEFAULT
+		set guifont=Lucida_Console:h10:cDEFAULT
+		set guifont=Consolas:h10:cDEFAULT
 		let skip_loading_mswin=1
 		set clipboard=unnamed
 	endif
@@ -103,7 +109,7 @@ if &term=="xterm"
 	set t_Sf=[3%dm
 endif
 
-" if has("multi_byte") && !has("win32") && version >= 700   
+" if has("multi_byte") && !has("win32") && version >= 700
 if &listchars ==# 'eol:$'
   set listchars=tab:>-,eol:$
   if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
@@ -111,11 +117,10 @@ if &listchars ==# 'eol:$'
   endif
 endif
 
-set title
 set matchpairs+=<:>
 
-nmap <Leader>, :s/, \(\S\)/, \1/ge<CR>j
-vmap <Leader>, :s/, \(\S\)/, \1/ge<CR>j
+nmap <Leader>, :s/,\(\S\)/, \1/ge<CR>j
+vmap <Leader>, :s/,\(\S\)/, \1/ge<CR>
 vmap <Leader>t :Tab/
 nmap <Leader>t :Tab/
 vmap <Leader>= :Tab/=<CR>
@@ -123,6 +128,8 @@ nmap <Leader>= :Tab/=<CR>
 vmap <Leader>> :Tab/=><CR>
 nmap <Leader>> :Tab/=><CR>
 nmap <Leader>p :0r ~/.perlstub.pl<CR>
+
+inoremap <Tab> <c-r>=Smart_TabComplete()<CR>
 
 " Make Y consistent with C and D.  See :help Y.
 nnoremap Y y$
@@ -140,6 +147,8 @@ highlight Search     term=reverse ctermbg=blue     ctermfg=white
 highlight MatchParen              ctermbg=green    ctermfg=black
 highlight SpecialKey              ctermfg=darkgrey
 highlight NonText                 ctermfg=darkgrey
+highlight MatchParen NONE
+highlight MatchParen term=inverse cterm=inverse gui=inverse
 
 cabbrev quoteattribs s/\v(id\|style\|name\|bgcolor\|type\|cellspacing\|colspan\|class\|cellpadding\|value\|tabindex\|border\|width\|align\|height\|wrap\|rows\|cols\|maxlength\|size)\=('?)([#$]?\w+\%?)(\2)/\1="\3"/gc
 
@@ -149,7 +158,7 @@ map <F5>  :set cul!<CR>:set cuc!<CR>
 map <F7>  :bp<CR>
 map <F8>  :bn<CR>
 map <F11> :syn sync fromstart<CR>
-map <F12> :let @/ = ""<CR>
+map <F12> :nohlsearch<CR>
 
 map Ol <C-W>+
 map OS <C-W>-
@@ -220,4 +229,25 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+function! Smart_TabComplete()
+  let line = getline('.')                         " current line
+
+  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                  " line to one character right
+                                                  " of the cursor
+  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
+    return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1      " position of period, if any
+  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"                         " existing text matching
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"                         " file matching
+  else
+    return "\<C-X>\<C-O>"                         " plugin matching
+  endif
+endfunction
 

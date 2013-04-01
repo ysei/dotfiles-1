@@ -1,0 +1,12 @@
+[submodule "vimfiles/bundle/tabular"]
+	path = vimfiles/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "vimfiles/bundle/characterize"]
+	path = vimfiles/bundle/characterize
+	url = https://github.com/tpope/vim-characterize.git
+[submodule "vimfiles/bundle/unimpaired"]
+	path = vimfiles/bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vimfiles/bundle/fugitive"]
+	path = vimfiles/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive.git

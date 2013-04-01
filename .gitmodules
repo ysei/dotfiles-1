@@ -10,3 +10,6 @@
 [submodule "vimfiles/bundle/fugitive"]
 	path = vimfiles/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vimfiles/bundle/colors-solarized"]
+	path = vimfiles/bundle/colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git

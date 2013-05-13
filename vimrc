@@ -60,13 +60,15 @@ if has("gui_running")
 	set bg=dark
         set lines=50
         set columns=100
-        colorscheme solarized
+        colorscheme wuye
 
 	if has("unix")
 		set guifont=Monospace\ 10
 	else
+                set encoding=utf8
 		set guifont=Lucida_Console:h10:cDEFAULT
 		set guifont=Consolas:h10:cDEFAULT
+		set guifont=DejaVu_Sans_Mono:h11:cDEFAULT
 		let skip_loading_mswin=1
 		set clipboard=unnamed
 	endif
@@ -129,7 +131,7 @@ vmap <Leader>> :Tab/=><CR>
 nmap <Leader>> :Tab/=><CR>
 nmap <Leader>p :0r ~/.perlstub.pl<CR>
 
-inoremap <Tab> <c-r>=Smart_TabComplete()<CR>
+" inoremap <Tab> <c-r>=Smart_TabComplete()<CR>
 
 " Make Y consistent with C and D.  See :help Y.
 nnoremap Y y$

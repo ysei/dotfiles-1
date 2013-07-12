@@ -25,7 +25,7 @@ if [ -d "$HOME/perl5/bin" ] ; then
     PATH="$HOME/perl5/bin:$PATH"
 fi
 
-export DOIT_SERVER=CBSN3K1
+export DOIT_SERVER=7XVDCX1
 export EDITOR='vim'
 export FIGNORE=.svn
 export GREP_COLORS='ms=01;33:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'

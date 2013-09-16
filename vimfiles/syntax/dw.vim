@@ -184,3 +184,4 @@ hi link dokuwikiHorizontalLine NonText
 
 "set name
 let b:current_syntax = "dokuwiki"
+

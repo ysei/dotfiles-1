@@ -36,6 +36,7 @@ export PERLDB_OPTS="windowSize=40"
 export PERL_CPANM_OPT="--local-lib=~/perl5"
 export PROMPT_DIRTRIM='2'
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'nnoremap q ZQ' -c 'nnoremap <Space> <PageDown>' -\""
+export PAGER="~/bin/vimpager"
 # export PERLDOC_PAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'nnoremap q ZQ' -c 'nnoremap <Space> <PageDown>' -\" < "
 
 if [ ! -e /usr/share/terminfo/x/xterm-256color ] ; then

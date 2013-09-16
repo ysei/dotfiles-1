@@ -164,11 +164,6 @@ map <F8>  :bn<CR>
 map <F11> :syn sync fromstart<CR>
 map <F12> :nohlsearch<CR>
 
-map Ol <C-W>+
-map OS <C-W>-
-map OQ <C-W><
-map OR <C-W>>
-
 """""""" perl stub
 ""p  CHAR    0
 "    :0r ~/.perl^M:14^Mi

@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/bna/jamdavis/Work/aidaworkflow/FAMC/AIDAWorkflow'
+let g:netrw_dirhist_2='/home/bna/jamdavis/Work/automation/edi/ratebounce'
+let g:netrw_dirhist_3='/home/bna/jamdavis/perl5/lib/perl5/Path/Class'
+let g:netrw_dirhist_4='H:/Work/aidaworkflow/FAMC/AIDAWorkflow'
+let g:netrw_dirhist_5='H:\Work\aidaworkflow\FAMC\AIDAWorkflow'

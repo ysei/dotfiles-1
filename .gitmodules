@@ -16,3 +16,6 @@
 [submodule "vimfiles/bundle/perl"]
 	path = vimfiles/bundle/perl
 	url = https://github.com/vim-perl/vim-perl.git
+[submodule "vimfiles/bundle/ack"]
+	path = vimfiles/bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
